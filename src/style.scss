@@ -1,0 +1,143 @@
+$Black: hsl(0, 0%, 0%);
+$Very-Dark-Gray: hsl(0, 0%, 17%);
+$Dark-Gray: hsl(0, 0%, 59%);
+$White: hsl(0, 0%, 100%);
+
+@mixin mq($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin hr {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1px;
+  height: 70px;
+  background-color: $Dark-Gray;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+.header {
+  background-image: url('../images/pattern-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 23em;
+  @include mq(720px) {
+    height: 19em;
+  }
+  @include mq(1200px) {
+    height: 18em;
+  }
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+.main__title {
+  color: $White;
+  font-weight: 400;
+  font-size: 1.8rem;
+  margin: 1em 0;
+}
+.form {
+  width: 100%;
+  display: flex;
+  max-width: 550px;
+  &__input {
+    flex-basis: 85%;
+    font-size: 18px;
+    padding: 1em;
+    border: none;
+    cursor: pointer;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    &::placeholder {
+      color: $Dark-Gray;
+      font-weight: 400;
+      font-size: 0.9rem;
+      @include mq(450px) {
+        font-size: inherit;
+      }
+    }
+  }
+  &__submit {
+    flex-basis: 15%;
+    background-color: $Black;
+    border: none;
+    cursor: pointer;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: $Very-Dark-Gray;
+    }
+  }
+}
+.main__modal {
+  display: none;
+  margin-top: 2.5em;
+  background-color: $White;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 15px;
+  padding: 2em 0;
+  text-align: center;
+  &--active {
+    display: grid;
+  }
+  @include mq(720px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(1200px) {
+    grid-template-columns: repeat(4, 25%);
+  }
+}
+.modal__section {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 1em 2em 0;
+  align-self: start;
+  position: relative;
+  @include mq(720px) {
+    &:nth-child(odd)::after {
+      @include hr;
+    }
+  }
+  @include mq(1000px) {
+    &:not(:last-child)::after {
+      @include hr;
+    }
+  }
+}
+.section__title {
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $Dark-Gray;
+}
+.section__data {
+  margin: 0.5em 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+// map
+
+.map {
+}
