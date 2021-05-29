@@ -1,9 +1,33 @@
+import L from 'leaflet';
+import markerImg from 'url:../images/icon-location.svg';
+
 const form = document.querySelector('.form');
 const query = document.querySelector('.form__input');
 const modal = document.querySelector('.main__modal');
 const modalSection = document.querySelectorAll('.modal__section');
-const map = document.querySelector('.map');
+const mapContainer = document.querySelector('.map');
 let dataList = [];
+
+const customMarker = L.icon({
+  iconUrl: markerImg,
+  iconSize: [46, 56],
+  iconAnchor: [23, 56],
+});
+
+const map = L.map(mapContainer).setView([51.505, -0.09], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+map.zoomControl.remove();
+
+L.control
+  .zoom({
+    position: 'bottomleft',
+  })
+  .addTo(map);
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -18,7 +42,6 @@ const getData = async (query) => {
   const res = await fetch(`http://ip-api.com/json/${query}`);
   const data = await res.json();
   dataList = data;
-  console.log(data); // TODO
 };
 
 const displayData = (dataList) => {
@@ -31,7 +54,13 @@ const displayData = (dataList) => {
 };
 
 const showOnMap = ({ lat, lon }) => {
-  console.log(lat, lon);
+  L.marker([lat, lon], { icon: customMarker }).addTo(map);
+  map.setView([lat, lon], 12);
+};
+
+const handleModalClick = () => {
+  modal.classList.toggle('main__modal--short');
 };
 
 form.addEventListener('submit', handleSubmit);
+modal.addEventListener('click', handleModalClick);

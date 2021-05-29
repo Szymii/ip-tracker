@@ -13,8 +13,9 @@ $White: hsl(0, 0%, 100%);
   content: '';
   position: absolute;
   right: 0;
+  top: 0;
   width: 1px;
-  height: 70px;
+  height: 100%;
   background-color: $Dark-Gray;
 }
 
@@ -25,17 +26,23 @@ $White: hsl(0, 0%, 100%);
   margin: 0;
   font-family: 'Rubik', sans-serif;
 }
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .header {
   background-image: url('../images/pattern-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 23em;
+  flex-basis: 100%;
+  max-height: 300px;
   @include mq(720px) {
-    height: 19em;
+    max-height: 250px;
   }
   @include mq(1200px) {
-    height: 18em;
+    max-height: 230px;
   }
 }
 .main {
@@ -50,7 +57,7 @@ $White: hsl(0, 0%, 100%);
   color: $White;
   font-weight: 400;
   font-size: 1.8rem;
-  margin: 1em 0;
+  margin: 0.8em 0;
 }
 .form {
   width: 100%;
@@ -89,18 +96,21 @@ $White: hsl(0, 0%, 100%);
   }
 }
 .main__modal {
+  z-index: 6;
   display: none;
-  margin-top: 2.5em;
+  margin-top: 2em;
   background-color: $White;
   width: 100%;
   max-width: 1200px;
   border-radius: 15px;
-  padding: 2em 0;
+  padding: 1em 0;
   text-align: center;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   &--active {
     display: grid;
   }
   @include mq(720px) {
+    pointer-events: none;
     grid-template-columns: 1fr 1fr;
   }
   @include mq(1200px) {
@@ -111,7 +121,8 @@ $White: hsl(0, 0%, 100%);
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: 1em 2em 0;
+  padding: 0.5em 2em 0;
+  height: 100%;
   align-self: start;
   position: relative;
   @include mq(720px) {
@@ -125,6 +136,16 @@ $White: hsl(0, 0%, 100%);
     }
   }
 }
+.main__modal--short {
+  .modal__section {
+    &:not(:first-child) {
+      display: none;
+      @include mq(720px) {
+        display: grid;
+      }
+    }
+  }
+}
 .section__title {
   font-size: 0.6rem;
   letter-spacing: 1px;
@@ -132,12 +153,17 @@ $White: hsl(0, 0%, 100%);
   color: $Dark-Gray;
 }
 .section__data {
-  margin: 0.5em 0;
-  font-size: 1.6rem;
+  margin: 0.4em 0;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 // map
 
 .map {
+  flex-basis: 100%;
+  z-index: 1;
+  @include mq(720px) {
+    height: 100%;
+  }
 }
