@@ -2,7 +2,7 @@
   "name": "tracker",
   "version": "1.0.0",
   "description": "![Design preview for the IP address tracker coding challenge](./design/desktop-preview.jpg)",
-  "main": "dist/index.html",
+  "main": "docs/index.html",
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html "
