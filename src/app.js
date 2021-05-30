@@ -39,23 +39,53 @@ const handleSubmit = async (e) => {
 };
 
 const getData = async (query) => {
-  const res = await fetch(`http://ip-api.com/json/${query}`);
+  const API_KEY = 'at_oO02sjZoO4J9AZGBytJ7b0AjN1343';
+  const querryType = setQueryType(query);
+
+  const res = await fetch(
+    `https://geo.ipify.org/api/v1?apiKey=${API_KEY}&${querryType}=${query}`
+  );
+
   const data = await res.json();
   dataList = data;
+};
+const setQueryType = (guery) => {
+  const ipReg =
+    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  if (ipReg.test(guery)) return 'ipAddress';
+  return 'domain';
 };
 
 const displayData = (dataList) => {
   modal.classList.add('main__modal--active');
   modalSection.forEach((section) => {
     const sectionData = section.querySelector('.section__data');
-    const dataSet = section.dataset.index;
-    sectionData.innerText = dataList[dataSet].replace(/\//g, ' ');
+    const key = section.dataset.index;
+    setData(sectionData, key, dataList);
   });
 };
 
-const showOnMap = ({ lat, lon }) => {
-  L.marker([lat, lon], { icon: customMarker }).addTo(map);
-  map.setView([lat, lon], 12);
+const setData = (element, key, { ip, location, isp }) => {
+  switch (key) {
+    case 'ip':
+      element.innerText = ip;
+      break;
+    case 'country':
+      element.innerText = `${location.country} ${location.city}`;
+      break;
+    case 'timezone':
+      element.innerText = location.timezone;
+      break;
+    case 'isp':
+      element.innerText = isp;
+      break;
+  }
+};
+
+const showOnMap = ({ location }) => {
+  const { lat, lng } = location;
+  L.marker([lat, lng], { icon: customMarker }).addTo(map);
+  map.setView([lat, lng], 12);
 };
 
 const handleModalClick = () => {
