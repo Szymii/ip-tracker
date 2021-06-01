@@ -1,5 +1,7 @@
 import L from 'leaflet';
 import markerImg from 'url:../images/icon-location.svg';
+import { ipRegex } from './ipRegex';
+import { showModal } from './showModal';
 
 const form = document.querySelector('.form');
 const query = document.querySelector('.form__input');
@@ -32,8 +34,11 @@ L.control
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (query.value.trim() === '') return;
-  await getData(query.value);
-  if (dataList.status === 'fail') return;
+  const status = await getData(query.value);
+  if (status !== 200) {
+    showModal(status);
+    return;
+  }
   displayData(dataList);
   showOnMap(dataList);
 };
@@ -41,18 +46,16 @@ const handleSubmit = async (e) => {
 const getData = async (query) => {
   const API_KEY = 'at_oO02sjZoO4J9AZGBytJ7b0AjN1343';
   const querryType = setQueryType(query);
-
   const res = await fetch(
     `https://geo.ipify.org/api/v1?apiKey=${API_KEY}&${querryType}=${query}`
   );
-
   const data = await res.json();
   dataList = data;
+  return res.status;
 };
+
 const setQueryType = (guery) => {
-  const ipReg =
-    /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-  if (ipReg.test(guery)) return 'ipAddress';
+  if (ipRegex.test(guery)) return 'ipAddress';
   return 'domain';
 };
 

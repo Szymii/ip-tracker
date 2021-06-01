@@ -1,23 +1,5 @@
-$Black: hsl(0, 0%, 0%);
-$Very-Dark-Gray: hsl(0, 0%, 17%);
-$Dark-Gray: hsl(0, 0%, 59%);
-$White: hsl(0, 0%, 100%);
-
-@mixin mq($size) {
-  @media (min-width: $size) {
-    @content;
-  }
-}
-
-@mixin hr {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 1px;
-  height: 100%;
-  background-color: $Dark-Gray;
-}
+@use './abstracts' as *;
+@use './modal' as *;
 
 *,
 *::after,
@@ -30,9 +12,10 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 }
 .header {
-  background-image: url('../images/pattern-bg.png');
+  background-image: url('../../images/pattern-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,0 +1,30 @@
+@use './abstracts' as *;
+
+.modal__wrapper {
+  z-index: 10;
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  min-width: 324px;
+  transform: translate(-50%, 200%);
+  background-color: $White;
+  color: $Error;
+  padding: 2em 1em 1em;
+  border: solid 3px $Error;
+  border-radius: 15px;
+  text-align: center;
+  animation: slide 0.5s ease-out 1 forwards,
+    slide 0.5s ease-in 5.5s 1 reverse forwards;
+}
+.modal__wrapper::before {
+  @include bar;
+  transform: translateX(-50%);
+  background-color: $Light-Error;
+}
+.modal__wrapper::after {
+  @include bar;
+  transform-origin: left;
+  transform: translateX(-50%) scaleX(0);
+  background-color: $Error;
+  animation: progress 5s linear 0.5s 1 forwards;
+}
