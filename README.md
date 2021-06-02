@@ -1,10 +1,8 @@
 # Frontend Mentor - IP address tracker solution
+
 This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
 
 My solution URL: [https://szymii.github.io/ip--tracker/](https://szymii.github.io/ip--tracker/)
-
-
-
 
 ## The challenge
 
@@ -28,9 +26,9 @@ Users should be able to:
 
 ### Intresting problem
 
-Chrome changes the background color while auto-filling, this messes up the look of my custom loader. 
+Chrome changes the background color while auto-filling, this messes up the look of my custom loader.
 
-To prevent this behavior I used this code: 
+To prevent this behavior I used this code:
 
 ```css
 input:-webkit-autofill,
@@ -43,4 +41,3 @@ input:-webkit-autofill:active {
 ```
 
 Solution from [stackoverflow](https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete)
-
