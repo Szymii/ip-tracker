@@ -3,6 +3,7 @@ $Very-Dark-Gray: hsl(0, 0%, 17%);
 $Dark-Gray: hsl(0, 0%, 59%);
 $Error: hsl(0, 100%, 67%);
 $Light-Error: hsl(0, 100%, 85%);
+$Loading: hsl(229, 57%, 58%);
 $White: hsl(0, 0%, 100%);
 
 @mixin mq($size) {
@@ -42,5 +43,13 @@ $White: hsl(0, 0%, 100%);
   }
   100% {
     transform: translateX(-50%) scaleX(1);
+  }
+}
+@keyframes load3 {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
   }
 }

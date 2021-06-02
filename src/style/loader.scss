@@ -1,0 +1,45 @@
+@use './abstracts' as *;
+
+.loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: calc(10% + 35px);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: $Loading;
+  background: linear-gradient(
+    to right,
+    $Loading 10%,
+    rgba(255, 255, 255, 0) 42%
+  );
+  transform: translateY(-50%);
+  animation: load3 1.4s infinite linear;
+  &--active {
+    display: block;
+  }
+}
+.loader::before {
+  width: 50%;
+  height: 50%;
+  background: $Loading;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader::after {
+  background: $White;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

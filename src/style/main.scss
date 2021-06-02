@@ -1,5 +1,6 @@
 @use './abstracts' as *;
 @use './modal' as *;
+@use './loader' as *;
 
 *,
 *::after,
@@ -7,6 +8,13 @@
   box-sizing: border-box;
   margin: 0;
   font-family: 'Rubik', sans-serif;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: all 5000s ease-in-out 0s;
+  transition-property: background-color, color;
 }
 body {
   height: 100vh;
@@ -46,6 +54,7 @@ body {
   width: 100%;
   display: flex;
   max-width: 550px;
+  position: relative;
   &__input {
     flex-basis: 85%;
     font-size: 18px;

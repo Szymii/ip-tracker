@@ -8,6 +8,7 @@ const query = document.querySelector('.form__input');
 const modal = document.querySelector('.main__modal');
 const modalSection = document.querySelectorAll('.modal__section');
 const mapContainer = document.querySelector('.map');
+const loader = document.querySelector('.loader');
 let dataList = [];
 
 const customMarker = L.icon({
@@ -34,7 +35,9 @@ L.control
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (query.value.trim() === '') return;
+  loader.classList.add('loader--active');
   const status = await getData(query.value);
+  loader.classList.remove('loader--active');
   if (status !== 200) {
     showModal(status);
     return;
