@@ -4,6 +4,8 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
 
 My solution URL: [https://szymii.github.io/ip--tracker/](https://szymii.github.io/ip--tracker/)
 
+### ‼If the page doesn't work please disable adblock because some blocks are blocking Geolocation API‼
+
 ## The challenge
 
 Users should be able to:
