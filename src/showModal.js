@@ -5,7 +5,7 @@ export const showModal = (status) => {
   info.innerText =
     status === 200
       ? 'Incorrect IP or domain name.'
-      : 'Something went wrong. Please try again later.';
+      : 'Something went wrong. \n Please disable your AdBlock \n or try again later.';
   document.body.appendChild(clone);
   setTimeout(() => {
     const modal = document.querySelector('.modal__wrapper');
