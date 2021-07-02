@@ -17,11 +17,16 @@ const customMarker = L.icon({
   iconAnchor: [23, 56],
 });
 
+let size = { tileSize: 256, zoomOffset: 0 };
+if (window.innerWidth > 1920) size = { tileSize: 512, zoomOffset: -1 };
+if (window.innerWidth > 2560) size = { tileSize: 1024, zoomOffset: -2 };
+
 const map = L.map(mapContainer).setView([51.505, -0.09], 10);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  ...size,
 }).addTo(map);
 
 map.zoomControl.remove();
