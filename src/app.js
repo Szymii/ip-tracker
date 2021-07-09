@@ -11,6 +11,8 @@ const mapContainer = document.querySelector('.map');
 const loader = document.querySelector('.loader');
 let dataList = [];
 
+const API_KEY = process.env.API_KEY;
+
 const customMarker = L.icon({
   iconUrl: markerImg,
   iconSize: [46, 56],
@@ -53,7 +55,6 @@ const handleSubmit = async (e) => {
 
 const getData = async (query) => {
   try {
-    const API_KEY = 'at_oO02sjZoO4J9AZGBytJ7b0AjN1343';
     const querryType = setQueryType(query);
     const res = await fetch(
       `https://geo.ipify.org/api/v1?apiKey=${API_KEY}&${querryType}=${query}`
