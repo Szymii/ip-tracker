@@ -2,7 +2,7 @@
 
 This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
 
-My solution URL: [https://szymii.github.io/ip--tracker/](https://szymii.github.io/ip--tracker/)
+My solution URL: [https://szymii.github.io/ip--tracker/](https://szymii.github.io/ip-tracker/)
 
 ### ‼If the page doesn't work please disable adblock because some blocks are blocking Geolocation API‼
 
