@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Intresting problem
 
-Chrome changes the background color while auto-filling, this messes up the look of my custom loader.
+Chrome changes the background color while auto-filling, this messed up the look of my custom loader.
 
 To prevent this behavior I used this code:
 
